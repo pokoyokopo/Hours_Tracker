@@ -63,6 +63,11 @@ window.onload = displayTimePairs;
 // save and calculate time pairs
 
 function saveTimePair(startTime, endTime) {
+    // check for missing fields
+    if (!startTime || !endTime) {
+        console.log('Must submit both start and end time.');
+        return;
+    }
     var timePairs = JSON.parse(localStorage.getItem('timePairs')) || [];
 
     // Calculate the duration of the time pair
