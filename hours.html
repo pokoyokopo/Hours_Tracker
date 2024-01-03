@@ -6,7 +6,7 @@
     </head>
     <body>
         <div id ="calendars">
-        <h1>Hours tracker and Time Calculator</h1>
+        <h1>How long have I been doing things?</h1>
         When did you start?
         <input type="text" id="startTime">
         When did you stop?
@@ -17,6 +17,7 @@
             <table id="timeTable">
                 <thead>
                     <tr>
+                        <th>Select</th>
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Hours</th>
@@ -26,6 +27,7 @@
                     
                 </tbody>   
             </table>
+            <button id="deleteButton">Clear Selected</button>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="datepicker.js"></script>

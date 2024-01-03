@@ -16,6 +16,12 @@ var endTimePicker = flatpickr("#endTime", {
         var startTime = localStorage.getItem('tempStartTime');
         saveTimePair(startTime, dateStr);
         localStorage.removeItem('tempStartTime');
+        setTimeout(function() {
+            startTimePicker.clear();
+            document.getElementById('startTime').value = '';
+            endTimePicker.clear();
+            document.getElementById('endTime').value = '';
+        }, 0);
     }
 });
 
@@ -36,10 +42,18 @@ function displayTimePairs() {
         // new row
         var row = tableBody.insertRow();
 
+        // Check/Selection box for each set of timePairs
+        var checkboxCell = row.insertCell(0);
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkboxCell.id = 'checkbox' + i;
+        checkboxCell.appendChild(checkbox);
+
         // Add our corresponding times and difference cells to the row
-        row.insertCell(0).innerText = pair.start;
-        row.insertCell(1).innerText = pair.end;
-        row.insertCell(2).innerText = pair.difference;
+        row.insertCell(1).innerText = pair.start;
+        row.insertCell(2).innerText = pair.end;
+        row.insertCell(3).innerText = pair.difference;
+
     }
 }
 
@@ -55,7 +69,7 @@ function saveTimePair(startTime, endTime) {
     var diff = new Date(endTime) - new Date(startTime);
 
     // Convert from milliseconds to hours
-    var diffInHours = diff / 1000 / 60 / 60;
+    var diffInHours = parseFloat((diff / 1000 / 60 / 60).toFixed(3));
 
     // Add it all to an array
 
@@ -66,3 +80,28 @@ function saveTimePair(startTime, endTime) {
     // now with display update functionality!
     displayTimePairs();
 }
+
+function deleteSelectedTimePairs() {
+    // get table body
+    var tableBody = document.getElementById('timeTable').getElementsByTagName('tbody')[0];
+
+    var timePairs = JSON.parse(localStorage.getItem('timePairs')) || [];
+
+    // loop rows in reverse to handle index changes from deletion
+    for (var i = tableBody.rows.length - 1; i >= 0; i--) {
+        var row = tableBody.rows[i];
+
+        // if checkbox in row is checked, remove time pair from array
+        if (row.cells[0].getElementsByTagName('input')[0].checked) {
+            timePairs.splice(i, 1);
+        }
+    }
+
+    // update localStorage
+    localStorage.setItem('timePairs', JSON.stringify(timePairs));
+
+    displayTimePairs();
+}
+
+// listen for delete button click
+document.getElementById('deleteButton').addEventListener('click', deleteSelectedTimePairs);
