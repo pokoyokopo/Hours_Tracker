@@ -1,3 +1,14 @@
+html {
+    height: 100%;
+    background: linear-gradient(to bottom right, #5c426b, #241158);
+}
+
+body {
+    color: #ffffffff; /* white */
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 300;
+}
+
 #calendars {
     margin-bottom: 20px;
 }

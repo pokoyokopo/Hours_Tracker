@@ -3,7 +3,7 @@
 
 var startTimePicker = flatpickr("#startTime", {
     enableTime: true,
-    dateFormat: "Y-m-d H:i",
+    dateFormat: "m-d-Y h:i K",
     onClose: function(_, dateStr) {
         localStorage.setItem('tempStartTime', dateStr);
     }
@@ -11,7 +11,7 @@ var startTimePicker = flatpickr("#startTime", {
 
 var endTimePicker = flatpickr("#endTime", {
     enableTime: true,
-    dateFormat: "Y-m-d H:i",
+    dateFormat: "m-d-Y h:i K",
     onClose: function(_, dateStr) {
         var startTime = localStorage.getItem('tempStartTime');
         saveTimePair(startTime, dateStr);
