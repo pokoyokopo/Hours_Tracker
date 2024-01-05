@@ -5,13 +5,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link rel="stylesheet" type = "text/css" href="home.css">
         <link rel="stylesheet" type = "text/css" href="timetable.css">
+        <link rel="stylesheet" type = "text/css" href="myFlatpickr.css">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;900&display=swap');
         </style>
     </head>
     <body>
-        <div id ="calendars">
         <h1>How long have I been doing things?</h1>
+        <div id ="calendars">
         When did you start?
         <input type="text" id="startTime">
         When did you stop?
@@ -32,7 +33,7 @@
                     
                 </tbody>   
             </table>
-            <button id="deleteButton">Clear Selected</button>
+            <button id="deleteButton" title="There is no undo button.">Clear Selected</button>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="datepicker.js"></script>

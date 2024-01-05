@@ -1,0 +1,16 @@
+.flatpickr-input {
+    color: #ffffffff; /* white */
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.267);
+    backdrop-filter: blur(10px);
+}
+
+.flatpickr-calendar {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+.flatpickr-day.today {
+    border-color: rgb(96, 29, 158);
+}
