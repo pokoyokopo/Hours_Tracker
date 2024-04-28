@@ -26,6 +26,7 @@ var endTimePicker = flatpickr("#endTime", {
 });
 
 // retrieve the the time pairs from local storage
+// retrieve the the time pairs from local storage
 function displayTimePairs() {
     var timePairs = JSON.parse(localStorage.getItem('timePairs')) || [];
 
@@ -35,7 +36,10 @@ function displayTimePairs() {
     // clear the table body to prevent dupes
     tableBody.innerHTML = '';
 
-    // loooop through the array
+    // initialize total hours
+    var totalHours = 0;
+
+    // loop through the array
     for (var i = 0; i < timePairs.length; i++) {
         var pair = timePairs[i];
 
@@ -54,7 +58,16 @@ function displayTimePairs() {
         row.insertCell(2).innerText = pair.end;
         row.insertCell(3).innerText = pair.difference;
 
+        // Add the difference to total hours
+        totalHours += pair.difference;
     }
+
+    // Add a row for the total hours
+    var totalRow = tableBody.insertRow();
+    totalRow.insertCell(0); // Empty cell for symmetry with other rows
+    totalRow.insertCell(1); // Empty cell
+    totalRow.insertCell(2).innerText = 'Total Hours:';
+    totalRow.insertCell(3).innerText = totalHours;
 }
 
 // displayTimePairs when the page loads
